@@ -38,4 +38,6 @@ String sourcename="";
 				entry.getValue().sendMessage(gson.toJson(md));
     }
     ```
-       > 也就是说，接收消息的一方，必须在Session中是存在的，可以简单的理解为一个容器，用户一旦登陆，就会进入该容器，当需要发送消息时，会按照接收方的username或其他等同信息(id/number...)去容器寻找，找到就会将对应的消息发送给接收方
+>  也就是说，接收消息的一方，必须在Session中是存在的，可以简单的理解为一个容器，用户一旦登陆，就会进入该容器，当需要发送消息时，会按照接收方的username或其他等同信息(id/number...)去容器寻找，找到就会将对应的消息发送给接收方
+
+# 欢迎访问CSDN：https://blog.csdn.net/weixin_38964895
