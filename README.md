@@ -13,12 +13,12 @@ WebSocket实现即时聊天
 > 检查访问的是本地还是外地服务器，建议将localhost统一换成服务器地址
 > Gson的jar是否在pom文件或者手动导入过
 # WebSocket connection to 'ws://localhost:8080/CollabEdit/echo' failed: Error during WebSocket handshake: Unexpected response code: 404
-     > 这个问题也是在调试成功之前一直困扰我的问题，最终定位到是Tomcat依赖的WebSocketjar包版本过低，解决方案先提供以下两种：
+> 这个问题也是在调试成功之前一直困扰我的问题，最终定位到是Tomcat依赖的WebSocketjar包版本过低，解决方案先提供以下两种：
 
 > 将项目直接部署在Tomcat8.0及以上的版本运行
 > 将依赖的WebSocket的jar从Tomcat8.0及以上中手动挑选出，部署在项目中，然后部署到低版本就没有问题了。我在实践中采取的是：Tomcat8.0的jar打成war，部署在Tomcat7.0上，可以成功启动
 # 发送的消息在接收方窗口没有接收到
-      # 请注意看WebSocket核心的如下代码：
+# 请注意看WebSocket核心的如下代码：
 ```
 String targetname=messageStr.substring(0, messageStr.indexOf("@"));
 String sourcename="";
@@ -37,7 +37,8 @@ String sourcename="";
                 md.setData(sourcename+":"+message.substring(messageStr.indexOf("@")+1));
 				entry.getValue().sendMessage(gson.toJson(md));
     }
-    ```
->  也就是说，接收消息的一方，必须在Session中是存在的，可以简单的理解为一个容器，用户一旦登陆，就会进入该容器，当需要发送消息时，会按照接收方的username或其他等同信息(id/number...)去容器寻找，找到就会将对应的消息发送给接收方
+```
+    
+> 也就是说，接收消息的一方，必须在Session中是存在的，可以简单的理解为一个容器，用户一旦登陆，就会进入该容器，当需要发送消息时，会按照接收方的username或其他等同信息(id/number...)去容器寻找，找到就会将对应的消息发送给接收方
 
 # 欢迎访问CSDN：https://blog.csdn.net/weixin_38964895
